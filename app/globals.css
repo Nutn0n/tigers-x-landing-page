@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+:root {
+  --s-bg-1: #173b72;
+  --s-bg-2: #0f243f;
+  --s-body: "Poppins";
+  --s-border-1: #ffffff;
+  --s-border-2: #ed6d2f;
+}
+
+@theme inline {
+  --color-bg-deep: var(--s-bg-2);
+  --color-bg-blue: var(--s-bg-1);
+  --color-line: var(--s-border-1);
+  --color-accent: var(--s-border-2);
+  --font-sans: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--s-bg-1);
+}
+
+body {
+  font-family: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--s-bg-1);
+  color: #f4f6f8;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle starfield + gradient base */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(23, 59, 114, 0.45), transparent 60%),
+    radial-gradient(900px 700px at -10% 110%, rgba(237, 109, 47, 0.08), transparent 60%),
+    var(--s-bg-1);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 80%, rgba(255, 255, 255, 0.35) 50%, transparent 51%),
+    radial-gradient(1px 1px at 40% 70%, rgba(255, 255, 255, 0.30) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 85% 25%, rgba(255, 255, 255, 0.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 10% 90%, rgba(255, 255, 255, 0.30) 50%, transparent 51%),
+    radial-gradient(1px 1px at 60% 15%, rgba(255, 255, 255, 0.40) 50%, transparent 51%);
+  background-size: 800px 800px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Reusable utility classes */
+@layer utilities {
+  .border-line {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+  .border-line-strong {
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+  .border-accent {
+    border-color: var(--s-border-2);
+  }
+  .text-accent {
+    color: var(--s-border-2);
+  }
+  .bg-blue-deep {
+    background-color: var(--s-bg-2);
+  }
+  .bg-blue-mid {
+    background-color: var(--s-bg-1);
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .display-font {
+    font-family: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  .mono-label {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+}
+
+/* Animated dashed border for accent */
+@keyframes dash-shift {
+  to {
+    background-position: 100% 0, 0 100%, 0 0, 100% 100%;
+  }
+}
+
+.dashed-accent {
+  background-image:
+    linear-gradient(90deg, var(--s-border-2) 50%, transparent 0) repeat-x,
+    linear-gradient(90deg, var(--s-border-2) 50%, transparent 0) repeat-x,
+    linear-gradient(0deg, var(--s-border-2) 50%, transparent 0) repeat-y,
+    linear-gradient(0deg, var(--s-border-2) 50%, transparent 0) repeat-y;
+  background-size: 12px 1px, 12px 1px, 1px 12px, 1px 12px;
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+  animation: dash-shift 12s linear infinite;
+}
+
+/* Pulse */
+@keyframes node-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.5); opacity: 0.3; }
+}
+.node-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background: var(--s-border-2);
+  opacity: 0.3;
+  animation: node-pulse 2.6s ease-in-out infinite;
+}
+
+/* Scanline shimmer used over placeholder visuals */
+@keyframes scan-shimmer {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+.scanline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(237, 109, 47, 0.06) 45%,
+    rgba(237, 109, 47, 0.18) 50%,
+    rgba(237, 109, 47, 0.06) 55%,
+    transparent 100%
+  );
+  animation: scan-shimmer 6s linear infinite;
+  pointer-events: none;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+/* Slow rotate */
+@keyframes slow-spin {
+  to { transform: rotate(360deg); }
+}
+.slow-spin {
+  animation: slow-spin 60s linear infinite;
+}
+
+/* 3D cube */
+.scene-3d {
+  perspective: 1200px;
+}
+@keyframes cube-rotate {
+  from { transform: rotateX(-22deg) rotateY(0deg); }
+  to { transform: rotateX(-22deg) rotateY(360deg); }
+}
+.cube {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: cube-rotate 22s linear infinite;
+  will-change: transform;
+}
+.cube-face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background:
+    linear-gradient(135deg, rgba(23, 59, 114, 0.85) 0%, rgba(15, 36, 63, 0.95) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Section divider tick */
+.tick-line {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.35) 0,
+    rgba(255, 255, 255, 0.35) 12px,
+    transparent 12px,
+    transparent 24px
+  );
+  background-size: 24px 1px;
+  background-repeat: repeat-x;
+}
+
+/* Typography helpers */
+.h-display {
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+.h-eyebrow {
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cube,
+  .scanline::before,
+  .marquee-track,
+  .slow-spin,
+  .dashed-accent {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
