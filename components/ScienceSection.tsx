@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
 import { useMissionContent } from "@/components/locale-context";
@@ -14,6 +15,15 @@ export default function ScienceSection() {
       <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10">
         <div className="max-w-3xl">
           <SectionLabel tone="accent">{scienceContent.eyebrow}</SectionLabel>
+          <div className="relative mt-6 h-28 w-full max-w-[22rem] sm:h-32 sm:max-w-[26rem]">
+            <Image
+              src="/tpn.png"
+              alt="TPN"
+              fill
+              className="object-contain object-left"
+              sizes="(min-width: 640px) 416px, 352px"
+            />
+          </div>
           <AnimatedText
             as="h2"
             text={scienceContent.heading}

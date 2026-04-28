@@ -7,6 +7,11 @@ import AnimatedText from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
 import { useMissionContent } from "@/components/locale-context";
 
+/** Maps content paths like `/public/timeline-01.jpg` to Next static URLs (`/timeline-01.jpg`). */
+function publicFolderToUrl(path: string) {
+  return path.startsWith("/public/") ? path.slice("/public".length) : path;
+}
+
 export default function MissionTimeline() {
   const { timelineContent } = useMissionContent();
   const ref = useRef<HTMLDivElement>(null);
@@ -38,8 +43,8 @@ export default function MissionTimeline() {
       </div>
 
       <div className="relative mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-12 gap-6 px-6 pb-32 sm:px-10">
-        {/* Sticky progress rail */}
-        <div className="sticky top-24 col-span-12 h-fit md:col-span-3">
+        {/* Sticky status — desktop only */}
+        <div className="hidden h-fit md:sticky md:top-24 md:col-span-3 md:block">
           <div className="rounded-[14px] border border-white bg-white p-5">
             <div className="flex items-center justify-between">
               <span className="mono-label text-[10px] text-[var(--s-bg-2)]/55">
@@ -108,7 +113,7 @@ function TimelineEntry({
 }: {
   i: number;
   total: number;
-  item: { date: string; title: string; body: string };
+  item: { date: string; title: string; body: string; imageSrc: string };
   phasePrefix: string;
 }) {
   return (
@@ -139,11 +144,13 @@ function TimelineEntry({
         </p>
         <div className="relative mt-6 aspect-[16/9] w-full max-w-2xl overflow-hidden rounded-[12px] border border-[var(--s-bg-2)]/15 bg-[var(--s-bg-2)]/[0.04]">
           <Image
-            src={`/timeline-${String(i + 1).padStart(2, "0")}.jpg`}
+            src={publicFolderToUrl(item.imageSrc)}
             alt={`${item.title} — ${item.date}`}
             fill
             className="object-cover"
             sizes="(min-width: 768px) 55vw, 100vw"
+            /* Same URL + Next image optimizer = stale cache after file swap. Dev: fetch /public file directly. */
+            unoptimized={process.env.NODE_ENV === "development"}
           />
         </div>
         <div className="mt-5 flex items-center gap-3">

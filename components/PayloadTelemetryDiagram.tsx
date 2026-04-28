@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
+import MissionPatch from "./MissionPatch";
 
 export type PayloadTelemetryContent = {
   diagramCaption: string;
@@ -9,6 +11,52 @@ export type PayloadTelemetryContent = {
   nodePrefix: string;
   link: { id: string; label: string; sub: string }[];
 };
+
+function getNodeOffsetClass(index: number) {
+  if (index === 1) return "sm:ml-12";
+  if (index === 2) return "sm:ml-24";
+  return "";
+}
+
+function NodeLogo({ nodeId }: { nodeId: string }) {
+  if (nodeId === "iss") {
+    return (
+      <div className="relative h-12 w-12 shrink-0 sm:h-14 sm:w-14">
+        <Image
+          src="/esa.svg"
+          alt="European Space Agency"
+          fill
+          className="object-contain"
+          sizes="56px"
+        />
+      </div>
+    );
+  }
+
+  if (nodeId === "esa") {
+    return (
+      <div className="relative h-12 w-20 shrink-0 sm:h-14 sm:w-24">
+        <Image
+          src="/spaceapplication.jpg"
+          alt="Space Applications Services"
+          fill
+          className="object-contain"
+          sizes="96px"
+        />
+      </div>
+    );
+  }
+
+  if (nodeId === "bkk") {
+    return (
+      <div className="shrink-0">
+        <MissionPatch size={56} spin={false} withRing={false} />
+      </div>
+    );
+  }
+
+  return null;
+}
 
 export default function PayloadTelemetryDiagram({
   content,
@@ -38,23 +86,23 @@ export default function PayloadTelemetryDiagram({
                 damping: 22,
                 delay: i * 0.15,
               }}
-              className={`relative flex items-center gap-4 ${
-                i === 1 ? "sm:ml-12" : i === 2 ? "sm:ml-24" : ""
-              }`}
+              className={`relative flex items-center gap-4 ${getNodeOffsetClass(i)}`}
             >
               <div className="node-pulse relative flex h-3 w-3 items-center justify-center">
                 <span className="block h-3 w-3 rounded-full bg-[var(--s-border-2)]" />
               </div>
               <div className="flex-1 rounded-[10px] border border-white bg-white px-4 py-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-[var(--s-bg-2)]">
-                    {node.label}
-                  </span>
-                  <span className="mono-label text-[10px] text-[var(--s-bg-2)]/55">
-                    {content.nodePrefix} {i + 1}
-                  </span>
+                <div className="flex items-start gap-3">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold text-[var(--s-bg-2)]">
+                        {node.label}
+                      </span>
+                    </div>
+                    <div className="mt-1 text-xs text-[var(--s-bg-2)]/60">{node.sub}</div>
+                  </div>
+                  <NodeLogo nodeId={node.id} />
                 </div>
-                <div className="mt-1 text-xs text-[var(--s-bg-2)]/60">{node.sub}</div>
               </div>
             </motion.div>
           ))}

@@ -16,7 +16,10 @@ type Props = {
 
 export default function VideoBackground({ src, poster, className = "" }: Props) {
   return (
-    <div className={`absolute inset-0 overflow-hidden ${className}`} aria-hidden>
+    <div
+      className={`absolute left-0 right-0 top-0 h-[50svh] overflow-hidden md:inset-0 md:h-auto ${className}`}
+      aria-hidden
+    >
       {src ? (
         <video
           className="absolute inset-0 h-full w-full object-cover"

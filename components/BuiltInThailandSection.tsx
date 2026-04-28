@@ -12,7 +12,7 @@ export default function BuiltInThailandSection() {
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 py-28 sm:py-36">
       <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-stretch lg:gap-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start lg:gap-12">
           <div className="lg:col-span-5">
             <SectionLabel tone="accent">
               {builtInThailandContent.eyebrow}
@@ -40,7 +40,7 @@ export default function BuiltInThailandSection() {
             </FadeUp>
           </div>
 
-          <div className="relative min-h-[min(100dvh,900px)] w-full overflow-hidden rounded-[12px] lg:col-span-7 lg:min-h-[100dvh]">
+          <div className="relative w-full overflow-hidden rounded-[12px] max-lg:h-[min(50svh,600px)] max-lg:max-h-[600px] lg:col-span-7 lg:h-auto lg:max-h-none lg:min-h-[100dvh]">
             <Image
               src={featureImage.src}
               alt={featureImage.alt}

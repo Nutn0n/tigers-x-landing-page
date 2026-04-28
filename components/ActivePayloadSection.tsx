@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
 import { useMissionContent } from "@/components/locale-context";
@@ -11,6 +12,15 @@ export default function ActivePayloadSection() {
       <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10">
         <div className="max-w-3xl">
           <SectionLabel tone="accent">{activePayloadContent.eyebrow}</SectionLabel>
+          <div className="relative mt-6 h-28 w-full max-w-[22rem] sm:h-32 sm:max-w-[26rem]">
+            <Image
+              src="/payload.png"
+              alt="Payload"
+              fill
+              className="object-contain object-left"
+              sizes="(min-width: 640px) 416px, 352px"
+            />
+          </div>
           <AnimatedText
             as="h2"
             text={activePayloadContent.heading}
@@ -29,7 +39,7 @@ export default function ActivePayloadSection() {
             ))}
 
             <FadeUp delay={0.2}>
-              <div className="mt-6 rounded-[12px] border border-[var(--s-border-2)] bg-white p-4">
+              <div className="mt-6 rounded-[12px] bg-white p-4">
                 <div className="mono-label text-[10px] text-[var(--s-border-2)]">
                   Active Payload
                 </div>

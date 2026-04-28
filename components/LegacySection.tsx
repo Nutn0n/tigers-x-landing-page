@@ -34,7 +34,7 @@ export default function LegacySection() {
               </FadeUp>
             ))}
             <FadeUp delay={0.18}>
-              <div className="flex flex-wrap items-center justify-between gap-4 rounded-[14px] border border-[var(--s-border-2)] bg-white px-6 py-5">
+              <div className="flex flex-wrap items-center justify-between gap-4 rounded-[14px] bg-white px-6 py-5">
                 <div>
                   <div className="mono-label text-[10px] text-[var(--s-border-2)]">
                     {legacyContent.heritageTitle}
@@ -56,9 +56,9 @@ export default function LegacySection() {
         </div>
       </div>
 
-      {/* Container-width heritage image — 100% viewport height */}
+      {/* Full viewport height on lg+; capped at 600px on smaller screens */}
       <div className={`${containerClass} mt-14`}>
-        <div className="relative h-[100dvh] min-h-[480px] w-full overflow-hidden rounded-[12px]">
+        <div className="relative w-full overflow-hidden rounded-[12px] max-lg:h-[min(50svh,600px)] max-lg:max-h-[600px] lg:h-[100dvh] lg:min-h-[480px] lg:max-h-none">
           <Image
             src={heritageImage.src}
             alt={heritageImage.alt}

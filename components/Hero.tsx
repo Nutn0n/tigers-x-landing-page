@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate flex min-h-[100svh] w-full flex-col overflow-hidden"
+      className="relative isolate flex min-h-[100svh] w-full flex-col overflow-hidden bg-black"
     >
       <VideoBackground src="/hero.mp4" />
 
@@ -44,11 +44,8 @@ export default function Hero() {
           </nav>
           <LanguageSwitcher />
         </div>
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center md:hidden">
           <LanguageSwitcher />
-          <span className="mono-label text-[10px] text-white/60">
-            {heroContent.mobileCountdown}
-          </span>
         </div>
       </div>
 

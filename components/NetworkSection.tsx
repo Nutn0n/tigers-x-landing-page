@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import PayloadTelemetryDiagram from "./PayloadTelemetryDiagram";
 import SectionLabel from "./SectionLabel";
@@ -14,6 +15,15 @@ export default function NetworkSection() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionLabel tone="accent">{networkContent.eyebrow}</SectionLabel>
+            <div className="relative mt-6 h-28 w-full max-w-[22rem] sm:h-32 sm:max-w-[26rem]">
+              <Image
+                src="/com.png"
+                alt="Communications"
+                fill
+                className="object-contain object-left"
+                sizes="(min-width: 640px) 416px, 352px"
+              />
+            </div>
             <AnimatedText
               as="h2"
               text={networkContent.heading}

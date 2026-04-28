@@ -22,15 +22,25 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: "/favicon.ico", type: "image/x-icon" }],
   },
-  title: "TIGERS-X — Built in Thailand. Bound for the ISS.",
+  title: "TIGERS-X Scientific Payload Overview",
   description:
-    "TIGERS-X is an active payload designed to study Total Parenteral Nutrition in microgravity aboard the International Space Station. Designed and built in Thailand.",
-  metadataBase: new URL("https://tigers-x.example"),
+    "Thailand Innovative G-force varied Emulsification Research for Space Exploration. Chulabhorn Royal Academy.",
+  metadataBase: new URL("https://ishalab.space/tigers-x/"),
   openGraph: {
-    title: "TIGERS-X — Built in Thailand. Bound for the ISS.",
+    title: "TIGERS-X Scientific Payload Overview",
     description:
-      "Thailand Innovative G-force Varied Emulsification Research for Space Exploration.",
+      "Thailand Innovative G-force varied Emulsification Research for Space Exploration. Chulabhorn Royal Academy.",
+    url: "https://ishalab.space/tigers-x/",
+    siteName: "Integration of Space and Human Advancement",
     type: "website",
+    images: [{ url: "/og.png", alt: "TIGERS-X" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TIGERS-X Scientific Payload Overview",
+    description:
+      "Thailand Innovative G-force varied Emulsification Research for Space Exploration. Chulabhorn Royal Academy.",
+    images: ["/og.png"],
   },
 };
 

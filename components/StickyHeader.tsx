@@ -48,7 +48,7 @@ export default function StickyHeader() {
                 <MissionPatch size={40} spin={false} withRing={false} />
               </motion.div>
               <div className="flex flex-col leading-none">
-                <span className="display-font text-base font-bold tracking-tight text-[var(--s-bg-2)]">
+                <span className="text-base font-bold tracking-tight text-[var(--s-bg-2)] md:display-font">
                   TIGERS-X
                 </span>
                 <span className="mono-label mt-1 text-[9px] text-[var(--s-bg-2)]/55">

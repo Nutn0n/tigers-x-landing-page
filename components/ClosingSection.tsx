@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedText, { FadeUp } from "./AnimatedText";
+import MissionPatch from "./MissionPatch";
 import SectionLabel from "./SectionLabel";
 import { useMissionContent } from "@/components/locale-context";
 
@@ -28,11 +29,14 @@ export default function ClosingSection() {
           {closingContent.eyebrow}
         </SectionLabel>
 
-        <AnimatedText
-          as="h2"
-          text={closingContent.heading}
-          className="display-font h-display mx-auto mt-8 max-w-5xl text-balance text-[clamp(2.25rem,6vw,5rem)] text-white"
-        />
+        <div className="mx-auto mt-8 flex flex-col items-center gap-6">
+          <MissionPatch size={264} spin={false} withRing={false} />
+          <AnimatedText
+            as="h2"
+            text={closingContent.heading}
+            className="display-font h-display mx-auto max-w-5xl text-balance text-[clamp(2.25rem,6vw,5rem)] text-white"
+          />
+        </div>
 
         <div className="mx-auto mt-12 max-w-2xl space-y-3 text-left sm:text-center">
           {closingContent.paragraphs.map((p, i) => (
@@ -137,7 +141,7 @@ function Footer() {
 
   return (
     <div className="mt-12 text-left">
-      <div className="rounded-[14px] border border-white/15 bg-white/[0.03] p-5 sm:p-6">
+      <div className="rounded-[14px] bg-white/[0.03] p-5 sm:p-6">
         <div className="mono-label text-[10px] text-[var(--s-border-2)]">
           {f.researchTeamLabel}
         </div>
@@ -154,7 +158,7 @@ function Footer() {
           <div className="mono-label text-[10px] text-[var(--s-border-2)]">
             Supporting Organizations
           </div>
-          <div className="mt-2 rounded-[12px] border border-white/10 bg-white p-3 sm:p-4">
+          <div className="mt-2 rounded-[12px] bg-white p-3 sm:p-4">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
               {partnerLogos.map((logo) => (
                 <div key={logo.src} className="relative h-14">
