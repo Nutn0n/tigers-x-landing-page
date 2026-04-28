@@ -20,7 +20,7 @@ const notoSansThai = Noto_Sans_Thai({
 
 export const metadata: Metadata = {
   icons: {
-    icon: [{ url: "/favicon.ico", type: "image/x-icon" }],
+    icon: [{ url: "favicon.ico", type: "image/x-icon" }],
   },
   title: "TIGERS-X Scientific Payload Overview",
   description:
@@ -33,14 +33,14 @@ export const metadata: Metadata = {
     url: "https://ishalab.space/tigers-x/",
     siteName: "Integration of Space and Human Advancement",
     type: "website",
-    images: [{ url: "/og.png", alt: "TIGERS-X" }],
+    images: [{ url: "og.png", alt: "TIGERS-X" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "TIGERS-X Scientific Payload Overview",
     description:
       "Thailand Innovative G-force varied Emulsification Research for Space Exploration. Chulabhorn Royal Academy.",
-    images: ["/og.png"],
+    images: ["og.png"],
   },
 };
 
