@@ -3,11 +3,12 @@
 import { motion } from "framer-motion";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
-import { systemDesignContent } from "@/data/missionContent";
+import { useMissionContent } from "@/components/locale-context";
 
 const spring = { type: "spring" as const, stiffness: 180, damping: 20 };
 
 export default function SystemDesignSection() {
+  const { systemDesignContent } = useMissionContent();
   return (
     <section className="relative w-full border-t border-white/10 py-28 sm:py-36">
       <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10">
@@ -40,7 +41,7 @@ export default function SystemDesignSection() {
               viewport={{ once: true, amount: 0.4 }}
               transition={{ ...spring, delay: i * 0.08 }}
               whileHover={{ y: -6 }}
-              className={`group relative overflow-hidden rounded-[14px] border bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${
+              className={`group relative overflow-hidden rounded-[14px] border bg-white p-6 ${
                 i === 1 ? "border-[var(--s-border-2)]" : "border-white"
               }`}
             >

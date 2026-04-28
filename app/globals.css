@@ -22,12 +22,43 @@ html {
   background-color: var(--s-bg-1);
 }
 
+/* When Thai is active, prefer Noto Sans Thai (Google Font) across UI type + Tailwind theme tokens */
+html[lang="th"] {
+  --font-sans:
+    var(--font-noto-thai),
+    "Noto Sans Thai",
+    var(--font-poppins),
+    "Poppins",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  --font-display:
+    var(--font-noto-thai),
+    "Noto Sans Thai",
+    var(--font-poppins),
+    "Poppins",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
 body {
   font-family: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
   background-color: var(--s-bg-1);
   color: #f4f6f8;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+html[lang="th"] body {
+  font-family:
+    var(--font-noto-thai),
+    "Noto Sans Thai",
+    var(--font-poppins),
+    "Poppins",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
 }
 
 /* Subtle starfield + gradient base */
@@ -103,10 +134,44 @@ body::-webkit-scrollbar,
     font-family: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
     letter-spacing: -0.02em;
   }
+  html[lang="th"] .display-font {
+    font-family:
+      var(--font-noto-thai),
+      "Noto Sans Thai",
+      var(--font-poppins),
+      "Poppins",
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+  }
   .mono-label {
     font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+  }
+  /* Thai copy + uppercase labels: Noto Sans Thai reads better than monospace fallbacks */
+  html[lang="th"] .mono-label {
+    font-family:
+      var(--font-noto-thai),
+      "Noto Sans Thai",
+      var(--font-poppins),
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+    letter-spacing: 0.14em;
+  }
+
+  /* Hero + sticky site headers: mission branding and nav always use Poppins */
+  html[lang="th"] .mission-header {
+    font-family: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
+  }
+  html[lang="th"] .mission-header .mono-label,
+  html[lang="th"] .mission-header .display-font {
+    font-family: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  html[lang="th"] .hero-h1.display-font {
+    font-family: var(--font-poppins), "Poppins", "Helvetica Neue", Arial, sans-serif;
   }
 }
 

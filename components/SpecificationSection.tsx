@@ -1,14 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
-import Payload3DPlaceholder from "./Payload3DPlaceholder";
-import { specContent } from "@/data/missionContent";
+import { useMissionContent } from "@/components/locale-context";
 
 const spring = { type: "spring" as const, stiffness: 200, damping: 22 };
 
+const SpecModelViewer = dynamic(() => import("./PayloadModelViewer"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full min-h-[200px] w-full bg-transparent" aria-hidden />
+  ),
+});
+
 export default function SpecificationSection() {
+  const { specContent } = useMissionContent();
   return (
     <section
       id="specifications"
@@ -30,28 +38,23 @@ export default function SpecificationSection() {
             </FadeUp>
           </div>
 
-          {/* 3D rotating cube */}
+          {/* 3D canvas — no overlays or frame background */}
           <div className="lg:col-span-7">
-            <div className="relative aspect-[5/4] w-full overflow-hidden rounded-[14px] border border-white/20 bg-gradient-to-br from-[var(--s-bg-1)]/50 to-[var(--s-bg-2)]">
-              <div className="absolute inset-0 grid-lines opacity-25" />
-              <div className="absolute left-4 top-4 mono-label text-[10px] text-white/55">
-                FIG. 07 / Payload Geometry
-              </div>
-              <div className="absolute right-4 top-4 flex items-center gap-2 mono-label text-[10px] text-[var(--s-border-2)]">
-                <span className="h-2 w-2 rounded-full bg-[var(--s-border-2)] animate-pulse" />
-                LIVE PREVIEW
-              </div>
-              <Payload3DPlaceholder />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between mono-label text-[10px] text-white/45">
-                <span>X / Y / Z AXIS LOCKED</span>
-                <span>ROT. 22° / 360°</span>
-                <span>SCALE 1:1</span>
+            <div className="relative aspect-[5/4] w-full overflow-hidden bg-transparent">
+              <div className="absolute inset-0">
+                <SpecModelViewer
+                  src="/cube.glb"
+                  outlineOnly={true}
+                  autoRotate={false}
+                  orbitControls
+                  transparentCanvas
+                />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-[14px] border border-white bg-[var(--s-bg-2)]/30 shadow-[0_30px_80px_rgba(0,0,0,0.25)] md:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-[14px] border border-white bg-[var(--s-bg-2)]/30 md:grid-cols-3 lg:grid-cols-6">
           {specContent.specs.map((s, i) => (
             <motion.div
               key={s.key}

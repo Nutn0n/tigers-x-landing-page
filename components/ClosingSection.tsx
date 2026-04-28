@@ -1,14 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
-import { closingContent } from "@/data/missionContent";
+import { useMissionContent } from "@/components/locale-context";
 
 const spring = { type: "spring" as const, stiffness: 200, damping: 22 };
 
 export default function ClosingSection() {
+  const { closingContent } = useMissionContent();
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 py-32 sm:py-44">
       {/* Far horizon */}
@@ -29,7 +31,6 @@ export default function ClosingSection() {
         <AnimatedText
           as="h2"
           text={closingContent.heading}
-          stagger={0.04}
           className="display-font h-display mx-auto mt-8 max-w-5xl text-balance text-[clamp(2.25rem,6vw,5rem)] text-white"
         />
 
@@ -65,9 +66,11 @@ export default function ClosingSection() {
           transition={spring}
           className="mt-24 flex flex-wrap items-center justify-between gap-3 border-t border-white/15 pt-6 mono-label text-[10px] text-white/55"
         >
-          <span>TIGERS-X · TPN µG-EXPERIMENT · CRS-34</span>
-          <span className="text-[var(--s-border-2)]">END OF MISSION BRIEFING</span>
-          <span>BANGKOK · KOUROU · ZAVENTEM · CCSFS · ISS</span>
+          <span>{closingContent.footer.signoffLine}</span>
+          <span className="text-[var(--s-border-2)]">
+            {closingContent.footer.signoffMid}
+          </span>
+          <span>{closingContent.footer.signoffPlaces}</span>
         </motion.div>
 
         <Footer />
@@ -121,30 +124,77 @@ function CtaButton({
 }
 
 function Footer() {
+  const { closingContent } = useMissionContent();
+  const f = closingContent.footer;
+  const partnerLogos = [
+    { src: "/CRA_Logo.svg", alt: "CRA logo" },
+    { src: "/Thai_MHESI_emblem.svg", alt: "Thai MHESI emblem" },
+    { src: "/TSRI_Logo_2021.svg", alt: "TSRI logo 2021" },
+    { src: "/pim-logo.png", alt: "PIM logo" },
+    { src: "/GISTDA_LOGO-2048x1165.png", alt: "GISTDA logo" },
+    { src: "/temec-logo-2048x1165.png", alt: "TEMEC logo" },
+  ];
+
   return (
-    <div className="mt-12 grid grid-cols-1 gap-8 text-left sm:grid-cols-3 sm:gap-6">
-      <div>
-        <div className="mono-label text-[10px] text-white/55">Project</div>
-        <div className="mt-2 text-sm text-white">
-          TIGERS-X — Thailand Innovative G-force Varied Emulsification Research
-          for Space Exploration
+    <div className="mt-12 text-left">
+      <div className="rounded-[14px] border border-white/15 bg-white/[0.03] p-5 sm:p-6">
+        <div className="mono-label text-[10px] text-[var(--s-border-2)]">
+          {f.researchTeamLabel}
+        </div>
+        <div className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+          {f.researchTeam.map((member) => (
+            <div key={member.name} className="flex flex-col gap-0.5">
+              <span className="text-[11px] text-white/65">{member.role}</span>
+              <span className="text-sm text-white">{member.name}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6">
+          <div className="mono-label text-[10px] text-[var(--s-border-2)]">
+            Supporting Organizations
+          </div>
+          <div className="mt-2 rounded-[12px] border border-white/10 bg-white p-3 sm:p-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+              {partnerLogos.map((logo) => (
+                <div key={logo.src} className="relative h-14">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    className="object-contain p-1"
+                    sizes="(min-width: 1024px) 12vw, (min-width: 640px) 20vw, 40vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-        <div className="mono-label text-[10px] text-white/55">Partners</div>
-        <ul className="mt-2 space-y-1 text-sm text-white/75">
-          <li>Space Applications Services (BE)</li>
-          <li>European Space Agency</li>
-          <li>NASA · SpaceX (CRS-34)</li>
-        </ul>
-      </div>
-      <div>
-        <div className="mono-label text-[10px] text-white/55">Contact</div>
-        <ul className="mt-2 space-y-1 text-sm text-white/75">
-          <li id="follow">Follow Mission Updates</li>
-          <li id="contact">team@tigers-x.example</li>
-          <li>© {new Date().getFullYear()} TIGERS-X Mission Control</li>
-        </ul>
+
+      <div className="mt-10 border-t border-white/15 pt-8 text-white/70">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="text-left">
+            <p className="text-[11px] text-white/60 sm:text-xs">{f.designCredit}</p>
+
+            <p className="mono-label mt-5 max-w-[220px] text-[9px] text-white/50">
+              {f.designPartnerLabel}
+              <br />
+              <a
+                href={f.designPartnerHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-inherit underline-offset-2 transition hover:underline"
+              >
+                {f.designPartnerLinkText}
+              </a>
+            </p>
+          </div>
+
+          <p className="text-right text-xs text-white/50 sm:max-w-[min(280px,45%)] sm:self-end">
+            © {new Date().getFullYear()} {f.copyrightNotice}
+          </p>
+        </div>
       </div>
     </div>
   );

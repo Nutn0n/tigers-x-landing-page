@@ -1,33 +1,29 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
-import { useRef } from "react";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
-import { storyContent } from "@/data/missionContent";
+import { useMissionContent } from "@/components/locale-context";
+
+function ModelLoading() {
+  const { common } = useMissionContent();
+  return (
+    <div className="flex h-full w-full items-center justify-center mono-label text-[10px] text-white/55">
+      {common.loadingModel}
+    </div>
+  );
+}
 
 const PayloadModelViewer = dynamic(() => import("./PayloadModelViewer"), {
   ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full items-center justify-center mono-label text-[10px] text-white/55">
-      LOADING PAYLOAD MODEL…
-    </div>
-  ),
+  loading: () => <ModelLoading />,
 });
 
 export default function StorySection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const cubeY = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const ringScale = useTransform(scrollYProgress, [0, 1], [0.85, 1.15]);
+  const { storyContent } = useMissionContent();
 
   return (
     <section
-      ref={ref}
       id="story"
       className="relative w-full overflow-hidden bg-black py-28 sm:py-36"
     >
@@ -48,22 +44,13 @@ export default function StorySection() {
           </FadeUp>
         </div>
 
-        <div className="space-y-8 lg:col-span-7">
+        <div className="min-h-0 space-y-8 lg:col-span-7">
           {/* Real 3D payload model */}
-          <motion.div
-            style={{ y: cubeY }}
-            className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] border border-white bg-white"
-          >
-            <motion.div
-              style={{ scale: ringScale }}
-              className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[var(--s-bg-2)]/15"
-            />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[40%] w-[40%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--s-border-2)]/30" />
-
-            <div className="absolute inset-0">
-              <PayloadModelViewer />
+          <div className="relative aspect-[4/3] w-full min-h-0 overflow-hidden bg-black">
+            <div className="absolute inset-0 min-h-0 overflow-hidden">
+              <PayloadModelViewer outlineOnly />
             </div>
-          </motion.div>
+          </div>
 
           {storyContent.paragraphs.map((p, i) => (
             <FadeUp key={i} delay={i * 0.05}>

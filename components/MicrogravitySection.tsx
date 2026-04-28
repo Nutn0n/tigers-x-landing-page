@@ -4,9 +4,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
-import { microgravityContent } from "@/data/missionContent";
+import { useMissionContent } from "@/components/locale-context";
 
 export default function MicrogravitySection() {
+  const { microgravityContent } = useMissionContent();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -24,31 +25,6 @@ export default function MicrogravitySection() {
       ref={ref}
       className="relative w-full overflow-hidden border-t border-white/10 py-32 sm:py-44"
     >
-      {/* Floating particles */}
-      <div aria-hidden className="absolute inset-0">
-        {[...Array(18)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute h-2 w-2 rounded-full border border-[var(--s-border-2)]/40 bg-[var(--s-border-2)]/10"
-            style={{
-              left: `${(i * 53) % 100}%`,
-              top: `${(i * 37) % 100}%`,
-            }}
-            animate={{
-              x: [0, 12, -8, 0],
-              y: [0, -10, 6, 0],
-              opacity: [0.4, 0.9, 0.4],
-            }}
-            transition={{
-              duration: 8 + (i % 5),
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.2,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="relative mx-auto w-full max-w-[1400px] px-6 sm:px-10">
         <SectionLabel tone="accent">{microgravityContent.eyebrow}</SectionLabel>
 
@@ -59,7 +35,6 @@ export default function MicrogravitySection() {
           <AnimatedText
             as="h2"
             text={microgravityContent.heading}
-            stagger={0.06}
             className="display-font h-display max-w-5xl text-balance text-[clamp(2.5rem,7vw,6.5rem)] text-white"
           />
         </motion.div>
@@ -72,28 +47,6 @@ export default function MicrogravitySection() {
                   {p}
                 </p>
               </FadeUp>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom marquee */}
-        <div className="mt-24 overflow-hidden border-y border-white/15 py-5">
-          <div className="marquee-track flex w-max gap-12 mono-label text-[12px] text-white/40">
-            {Array.from({ length: 2 }).map((_, dup) => (
-              <div key={dup} className="flex shrink-0 items-center gap-12">
-                <span>FLUID DYNAMICS</span>
-                <span className="text-[var(--s-border-2)]">●</span>
-                <span>INTERFACIAL BEHAVIOUR</span>
-                <span className="text-[var(--s-border-2)]">●</span>
-                <span>EMULSION STABILITY</span>
-                <span className="text-[var(--s-border-2)]">●</span>
-                <span>HIDDEN DYNAMICS</span>
-                <span className="text-[var(--s-border-2)]">●</span>
-                <span>CLEANER ENVIRONMENT</span>
-                <span className="text-[var(--s-border-2)]">●</span>
-                <span>µG OBSERVATION</span>
-                <span className="text-[var(--s-border-2)]">●</span>
-              </div>
             ))}
           </div>
         </div>

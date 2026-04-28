@@ -4,15 +4,17 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { useState } from "react";
 import Link from "next/link";
 import MissionPatch from "./MissionPatch";
-
-const navLinks = [
-  { href: "#story", label: "Mission" },
-  { href: "#science", label: "Science" },
-  { href: "#specifications", label: "Specs" },
-  { href: "#timeline", label: "Timeline" },
-];
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useMissionContent } from "@/components/locale-context";
 
 export default function StickyHeader() {
+  const { heroContent } = useMissionContent();
+  const navLinks = [
+    { href: "#story", label: heroContent.navMission },
+    { href: "#science", label: heroContent.navScience },
+    { href: "#specifications", label: heroContent.navSpecs },
+    { href: "#timeline", label: heroContent.navTimeline },
+  ];
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
 
@@ -35,7 +37,7 @@ export default function StickyHeader() {
           {/* Backdrop */}
           <div className="absolute inset-0 bg-white" />
 
-          <div className="relative mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-6 py-3 sm:px-10">
+          <div className="mission-header relative mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-6 py-3 sm:px-10">
             {/* Brand block w/ patch */}
             <Link href="#hero" className="group flex items-center gap-3">
               <motion.div
@@ -50,7 +52,7 @@ export default function StickyHeader() {
                   TIGERS-X
                 </span>
                 <span className="mono-label mt-1 text-[9px] text-[var(--s-bg-2)]/55">
-                  Mission Brief / 2026
+                  {heroContent.stickySubtitle}
                 </span>
               </div>
             </Link>
@@ -75,15 +77,9 @@ export default function StickyHeader() {
                   <span className="absolute inset-0 rounded-full bg-[var(--s-border-2)]" />
                   <span className="absolute inset-0 animate-ping rounded-full bg-[var(--s-border-2)]/60" />
                 </span>
-                T-MINUS · MAY 2026
+                {heroContent.stickyCountdown}
               </div>
-              <a
-                href="#follow"
-                className="inline-flex items-center gap-2 rounded-[10px] border border-[var(--s-border-2)] bg-transparent px-3 py-1.5 text-xs text-[var(--s-border-2)] transition hover:bg-[var(--s-border-2)] hover:text-white"
-              >
-                Follow Mission
-                <span aria-hidden>→</span>
-              </a>
+              <LanguageSwitcher variant="sticky" />
             </div>
           </div>
         </motion.header>

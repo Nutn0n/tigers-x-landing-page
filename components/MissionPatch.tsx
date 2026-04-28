@@ -51,7 +51,7 @@ export default function MissionPatch({
           fill
           sizes={`${size}px`}
           priority={priority}
-          className="object-contain drop-shadow-[0_8px_28px_rgba(237,109,47,0.25)]"
+          className="object-contain"
         />
       </motion.div>
     </div>

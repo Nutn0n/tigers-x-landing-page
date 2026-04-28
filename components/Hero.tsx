@@ -4,11 +4,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import VideoBackground from "./VideoBackground";
 import MissionPatch from "./MissionPatch";
-import { heroContent, missionMeta } from "@/data/missionContent";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useMissionContent } from "@/components/locale-context";
 
 const spring = { type: "spring" as const, stiffness: 180, damping: 22 };
 
 export default function Hero() {
+  const { heroContent, missionMeta } = useMissionContent();
+
   return (
     <section
       id="hero"
@@ -17,27 +20,35 @@ export default function Hero() {
       <VideoBackground src="/hero.mp4" />
 
       {/* Top nav strip */}
-      <div className="relative z-20 mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 pt-6 sm:px-10">
+      <div className="mission-header relative z-20 mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 pt-6 sm:px-10">
         <div className="flex items-center gap-3">
           <MissionPatch size={44} spin={false} withRing={false} priority />
           <span className="mono-label text-[11px] text-white/80">
-            TIGERS-X / Mission Brief
+            {heroContent.brandLine}
           </span>
         </div>
-        <div className="hidden items-center gap-6 text-[12px] text-white/70 md:flex">
-          <a href="#story" className="hover:text-white">Mission</a>
-          <a href="#science" className="hover:text-white">Science</a>
-          <a href="#specifications" className="hover:text-white">Specs</a>
-          <a href="#timeline" className="hover:text-white">Timeline</a>
-          <a
-            href="#follow"
-            className="rounded-md border border-[var(--s-border-2)] px-3 py-1 text-[var(--s-border-2)] transition hover:bg-[var(--s-border-2)] hover:text-white"
-          >
-            Follow Mission
-          </a>
+        <div className="hidden items-center gap-5 md:flex">
+          <nav className="flex items-center gap-6 text-[12px] text-white/70">
+            <a href="#story" className="hover:text-white">
+              {heroContent.navMission}
+            </a>
+            <a href="#science" className="hover:text-white">
+              {heroContent.navScience}
+            </a>
+            <a href="#specifications" className="hover:text-white">
+              {heroContent.navSpecs}
+            </a>
+            <a href="#timeline" className="hover:text-white">
+              {heroContent.navTimeline}
+            </a>
+          </nav>
+          <LanguageSwitcher />
         </div>
-        <div className="md:hidden mono-label text-[10px] text-white/60">
-          T-MINUS · 2026
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <span className="mono-label text-[10px] text-white/60">
+            {heroContent.mobileCountdown}
+          </span>
         </div>
       </div>
 
@@ -57,26 +68,14 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            <h1 className="display-font h-display mt-6 text-[clamp(3.25rem,12vw,9.5rem)] text-white">
-              <span className="block overflow-hidden">
-                <motion.span
-                  className="inline-block text-white mix-blend-difference"
-                  initial={{ y: "110%" }}
-                  animate={{ y: "0%" }}
-                  transition={{ ...spring, delay: 0.05 }}
-                >
-                  TIGERS
-                </motion.span>
-                <motion.span
-                  className="ml-2 inline-block text-white mix-blend-difference"
-                  initial={{ y: "110%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  transition={{ ...spring, delay: 0.18 }}
-                >
-                  -X
-                </motion.span>
-              </span>
-            </h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.05 }}
+              className="hero-h1 display-font h-display mt-6 text-[clamp(3.25rem,12vw,9.5rem)] text-white mix-blend-difference"
+            >
+              {heroContent.title}
+            </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 14 }}
@@ -120,35 +119,35 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.85, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 180, damping: 20, delay: 0.6 }}
-              className="relative mb-5 flex items-center justify-between gap-4 rounded-[14px] border border-white bg-white px-5 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
+              className="relative mb-5 flex items-center justify-between gap-4 rounded-[14px] border border-white bg-white px-5 py-4"
             >
               <div className="flex items-center gap-4">
                 <MissionPatch size={86} priority />
                 <div>
                   <div className="mono-label text-[10px] text-[var(--s-border-2)]">
-                    Mission Insignia
+                    {heroContent.insigniaLabel}
                   </div>
                   <div className="mt-1 text-base font-semibold leading-tight text-[var(--s-bg-2)]">
-                    TIGERS-X · CRS-34
+                    {heroContent.crsLine}
                   </div>
                   <div className="mono-label mt-1 text-[9px] text-[var(--s-bg-2)]/55">
-                    ISS / COLUMBUS · 2026
+                    {heroContent.columbusLine}
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            <div className="rounded-[14px] border border-white bg-white p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
+            <div className="rounded-[14px] border border-white bg-white p-5">
               <div className="flex items-center justify-between">
                 <span className="mono-label text-[10px] text-[var(--s-bg-2)]/60">
-                  Mission Metadata
+                  {heroContent.metadataTitle}
                 </span>
                 <span className="flex items-center gap-2 mono-label text-[10px] text-[var(--s-border-2)]">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inset-0 rounded-full bg-[var(--s-border-2)]" />
                     <span className="absolute inset-0 animate-ping rounded-full bg-[var(--s-border-2)]/60" />
                   </span>
-                  LIVE
+                  {heroContent.liveLabel}
                 </span>
               </div>
 

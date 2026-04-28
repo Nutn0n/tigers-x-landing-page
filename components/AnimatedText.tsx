@@ -8,7 +8,6 @@ type Props = {
   className?: string;
   as?: "h1" | "h2" | "h3" | "p" | "span";
   delay?: number;
-  stagger?: number;
 };
 
 const spring = {
@@ -18,16 +17,17 @@ const spring = {
   mass: 0.6,
 };
 
+/**
+ * Animates a heading (or block) as a single unit — no nested word spans.
+ */
 export default function AnimatedText({
   text,
   className = "",
   as = "h2",
   delay = 0,
-  stagger = 0.045,
 }: Props) {
   const reduced = useReducedMotion();
   const Tag = motion[as] as typeof motion.h2;
-  const words = text.split(" ");
 
   if (reduced) {
     const Static = as;
@@ -37,36 +37,12 @@ export default function AnimatedText({
   return (
     <Tag
       className={className}
-      initial="hidden"
-      whileInView="visible"
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: stagger, delayChildren: delay },
-        },
-      }}
-      aria-label={text}
+      transition={{ ...spring, delay }}
     >
-      {words.map((word, i) => (
-        <span
-          key={`${word}-${i}`}
-          className="inline-block overflow-hidden align-baseline"
-          aria-hidden
-        >
-          <motion.span
-            className="inline-block will-change-transform"
-            variants={{
-              hidden: { y: "110%", opacity: 0 },
-              visible: { y: "0%", opacity: 1 },
-            }}
-            transition={spring}
-          >
-            {word}
-            {i < words.length - 1 ? "\u00A0" : ""}
-          </motion.span>
-        </span>
-      ))}
+      {text}
     </Tag>
   );
 }
