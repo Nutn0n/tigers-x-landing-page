@@ -47,11 +47,9 @@ const bundleEn = {
 
   storyContent: {
     eyebrow: "Chapter 01 / Premise",
-    heading: "A Small Cube That Challenges Gravity",
+    heading: "Investigating Fluid Physics In Microgravity",
     paragraphs: [
-      "There are moments in science where a simple question quietly breaks an entire assumption.",
-      "What if medicine does not have to be made on Earth?",
-      "TIGERS-X is not just heading to space. It is testing that question in the only place where the rules of fluid physics fundamentally change. At just 2.5 kilograms, it looks small. But scale in space has never been about size. It is about what assumptions you are willing to remove.",
+      "This payload is designed to investigate how complex fluids behave in microgravity. It is the first of its kind to study Total Parenteral Nutrition in space. It is a small cube, built by Thai researchers and engineers, preparing to operate aboard the International Space Station.",
     ],
   },
 
@@ -60,49 +58,53 @@ const bundleEn = {
     heading: "Medicine At Its Core",
     subheading: "Studying Total Parenteral Nutrition on Low Earth Orbit",
     paragraphs: [
-      "Total Parenteral Nutrition, or TPN, is a life-sustaining medical treatment that delivers essential nutrients directly into the bloodstream for patients who cannot use their digestive systems. It contains lipids, proteins, and carbohydrates in a complex emulsion.",
-      "On Earth, gravity causes oil-based and water-based phases to separate quickly. This makes long-term stability difficult to study. In microgravity, researchers can observe fluid dynamics and interfacial behavior without the constant distortion of gravity.",
-    ],
-    comparison: [
-      {
-        mode: "Earth Gravity",
-        result: "Phase separation",
-        detail:
-          "Density-driven sedimentation distorts the emulsion within minutes.",
-        envShort: "EARTH G-FIELD",
-      },
-      {
-        mode: "Microgravity",
-        result: "Stable observation window",
-        detail: "Interfacial behaviour becomes visible without buoyancy noise.",
-        envShort: "ISS / µG",
-      },
+      "Total Parenteral Nutrition (TPN) is a life-saving solution for patients who cannot use their gastrointestinal system, yet it still relies on a “One-Size-Fits-All” approach rather than true Personalized Medicine. The limitation is not just about selecting nutrients, but understanding how they behave as complex systems.",
+      "In practice, TPN depends on stable multi-phase emulsions of lipids, water, and biomolecules. Their behavior—droplet size, coalescence, and phase separation—directly affects dosing accuracy and safety, with instability posing risks such as fat embolism or nutrient degradation.",
     ],
   },
 
   microgravityContent: {
     eyebrow: "Chapter 03 / Environment",
-    heading: "Microgravity Is Not The Limitation. It Is The Laboratory.",
+    heading: "Use Microgravity as a Key to New Discovery",
     paragraphs: [
-      "Space is often described as harsh. But for TIGERS-X, space is a cleaner experimental environment.",
-      "Without sedimentation and buoyancy-driven separation, fluids behave differently. Interfaces become easier to observe. Hidden dynamics become visible. The goal is not only to understand medicine in space, but to redesign how complex formulations may be produced on Earth.",
+      "studying these systems on Earth is fundamentally limited by physics. Gravity is not just another variable, it is a dominant force that drives sedimentation, buoyancy-driven separation, and convection. These effects mask microscale behaviors governed by surface tension and diffusion.",
+      "Microgravity aboard the International Space Station acts as a “physics sandbox,” allowing us to isolate fundamental mechanisms of buoyancy and fluid physics. This enables direct observation which are phenomena that are otherwise inaccessible on Earth. ",
     ],
-    marqueeItems: [
-      "FLUID DYNAMICS",
-      "INTERFACIAL BEHAVIOUR",
-      "EMULSION STABILITY",
-      "HIDDEN DYNAMICS",
-      "CLEANER ENVIRONMENT",
-      "µG OBSERVATION",
+    cards: [
+      {
+        title: "Phase 1 / Short-Duration Flights",
+        body: "The first phase involved short-duration microgravity flights, providing initial insights into fluid distribution in the absence of gravity-driven separation. However, less than a minute of microgravity limited the ability to study time evolution or steady-state behavior.",
+      },
+      {
+        title: "Phase 2 / Long-Duration ISS Studies",
+        body: "The second phase advances to long-duration experiments aboard the ISS, enabling precise, repeatable observation of temporal dynamics and equilibrium states, and allowing systematic experimental design.",
+      },
     ],
   },
 
   systemDesignContent: {
     eyebrow: "Chapter 04 / Implication",
-    heading: "Rethinking How Medicine Is Made. Anywhere.",
+    heading: "Rethinking How Medicine Is Made. On Earth and In Space.",
     paragraphs: [
-      "If complex formulations can be mixed reliably without gravity and without human intervention, then pharmaceutical manufacturing can be reimagined.",
-      "Instead of centralized, large-scale, resource-heavy systems, TIGERS-X suggests a future of distributed, on-demand, resilient medical production. A future where critical treatments may be produced closer to the patient, with systems designed for precision, accessibility, and autonomy.",
+      "The goal is not simply to mix fluids in space, but to build datasets and models of nutrient systems in microgravity that can be translated into real medical applications like TPN. This shifts the focus from demonstration to understanding the underlying physics of how these fluids behave.",
+    ],
+    timelineTitle: "Impact Timeline",
+    impacts: [
+      {
+        term: "Short Term",
+        title: "Improve TPN formulations on earth",
+        body: "Insights from this project can improve TPN formulations on Earth, especially for patient-specific nutrition. For example, reducing emulsifier dependency can increase formulation flexibility and better support personalized medicine.",
+      },
+      {
+        term: "Medium Term",
+        title: "Food and fluid systems for long-duration space missions",
+        body: "This knowledge informs food and fluid system design for long-duration space missions. In space, formulations must remain stable over time, resist phase separation, be storable, and flow properly without gravity, requiring fluid delivery systems built for microgravity behavior.",
+      },
+      {
+        term: "Long Term",
+        title: "Space medicine allowing multi-planetary species",
+        body: "These advances contribute to space medicine, including drug mixing in microgravity, nutritional delivery, surgery that requires precise fluid control without gravity, and preventive care such as fluid balance management and long-term health optimization for multi-planetary species.",
+      },
     ],
   },
 
@@ -364,3 +366,4 @@ export const missionBundles: Record<Locale, MissionContent> = {
   en: bundleEn,
   th: bundleTh,
 };
+
