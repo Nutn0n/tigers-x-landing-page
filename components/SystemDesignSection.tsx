@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function SystemDesignSection() {
   const { systemDesignContent } = useMissionContent();
-  const impactImages = ["/medical.jpg", "/food.jpg", "/exploration.jpg"];
+  const impactImages = ["/medical.png", "/food.png", "/exploration.png"];
 
   return (
     <section className="relative w-full border-t border-white/10 py-28 sm:py-36">
