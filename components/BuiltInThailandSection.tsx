@@ -1,9 +1,89 @@
 "use client";
 
 import Image from "next/image";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import AnimatedText, { FadeUp } from "./AnimatedText";
 import SectionLabel from "./SectionLabel";
 import { useMissionContent } from "@/components/locale-context";
+
+function PayloadViewsMobileCarousel({
+  items,
+}: {
+  items: { src: string; alt: string }[];
+}) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const updateActive = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const w = el.clientWidth;
+    if (w <= 0) return;
+    setActive(Math.min(items.length - 1, Math.round(el.scrollLeft / w)));
+  }, [items.length]);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => updateActive());
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [updateActive]);
+
+  const scrollToIndex = (i: number) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+  };
+
+  return (
+    <div>
+      <div
+        ref={scrollerRef}
+        onScroll={updateActive}
+        className="flex w-full touch-pan-x snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Payload views"
+      >
+        {items.map((item) => (
+          <div
+            key={item.src}
+            className="relative aspect-[4/3] w-full shrink-0 grow-0 basis-full snap-center snap-always overflow-hidden rounded-[12px]"
+          >
+            <Image
+              src={item.src}
+              alt={item.alt}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              draggable={false}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 flex justify-center gap-2" aria-label="Slides">
+        {items.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-current={i === active ? "true" : undefined}
+            aria-label={`Go to slide ${i + 1} of ${items.length}`}
+            onClick={() => scrollToIndex(i)}
+            className={`h-1.5 rounded-full transition-[width,background-color] ${
+              i === active ? "w-6 bg-white" : "w-1.5 bg-white/35 hover:bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function BuiltInThailandSection() {
   const { builtInThailandContent } = useMissionContent();
@@ -53,21 +133,26 @@ export default function BuiltInThailandSection() {
         </div>
 
         <FadeUp delay={0.2}>
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5 lg:mt-16 lg:gap-6">
-            {payloadViews.map((item) => (
-              <div
-                key={item.src}
-                className="relative aspect-[4/3] w-full overflow-hidden rounded-[12px]"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
+          <div className="mt-12 lg:mt-16">
+            <div className="sm:hidden">
+              <PayloadViewsMobileCarousel items={payloadViews} />
+            </div>
+            <div className="hidden grid-cols-3 gap-5 sm:grid lg:gap-6">
+              {payloadViews.map((item) => (
+                <div
+                  key={item.src}
+                  className="relative aspect-[4/3] w-full overflow-hidden rounded-[12px]"
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </FadeUp>
       </div>
