@@ -51,8 +51,15 @@ export default function ActivePayloadSection() {
             </FadeUp>
           </div>
 
-          {/* Reserved — telemetry diagram lives in Architecture (Chapter 06) */}
-          <div className="min-h-[280px] lg:col-span-7" aria-hidden />
+          <FadeUp delay={0.1} className="flex min-h-[280px] flex-col justify-center lg:col-span-7">
+            <div className="flex w-full items-center justify-center lg:justify-end">
+              <img
+                src="/iss-outline-only.svg"
+                alt="International Space Station outline"
+                className="h-auto w-full max-w-xl object-contain brightness-0 invert opacity-90 lg:max-w-2xl"
+              />
+            </div>
+          </FadeUp>
         </div>
       </div>
     </section>
