@@ -7,6 +7,9 @@ import { useMissionContent } from "@/components/locale-context";
 
 export default function ActivePayloadSection() {
   const { activePayloadContent } = useMissionContent();
+  const issColumbusLabel =
+    activePayloadContent.link.find((n) => n.id === "iss")?.sub ?? "Columbus Module";
+
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 py-28 sm:py-36">
       <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10">
@@ -60,13 +63,20 @@ export default function ActivePayloadSection() {
                   className="h-auto w-full object-contain brightness-0 invert opacity-90"
                 />
                 <div
-                  className="pointer-events-none absolute left-[47%] top-[65%] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+                  className="pointer-events-none absolute left-[47%] top-[65%] -translate-x-1/2 -translate-y-1/2"
                   aria-hidden
                 >
                   <span className="relative inline-flex h-3 w-3">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75" />
                     <span className="relative inline-flex h-3 w-3 rounded-full bg-orange-500" />
                   </span>
+                </div>
+                <div className="pointer-events-none absolute left-[47%] top-[calc(65%+0.75rem)] -translate-x-1/2">
+                  <div className="rounded-[8px] bg-white px-2.5 py-1 shadow-sm ring-1 ring-black/5">
+                    <p className="mono-label whitespace-nowrap text-[9px] text-[var(--s-bg-2)] sm:text-[10px]">
+                      {issColumbusLabel}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
