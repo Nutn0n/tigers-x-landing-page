@@ -110,7 +110,7 @@ const bundleEn = {
 
   activePayloadContent: {
     eyebrow: "Chapter 05 / Operations",
-    heading: "Operate Remotely at the Space Station",
+    heading: "Operate Remotely on the Space Station",
     paragraphs: [
       "TIGERS-X is an active communication payload designed to operate with direct telemetry and telecommand between orbit and Earth. Researchers can monitor and control the experiment in near real time without astronaut intervention.",
       "This changes the payload from something simply sent to space into something operated in space.",
@@ -214,6 +214,20 @@ const bundleEn = {
       src: "/heritage.jpeg",
       alt: "TIGERS-X payload integration and engineering in Thailand",
     },
+    payloadViews: [
+      {
+        src: "/payload-view-1.jpg",
+        alt: "TIGERS-X payload view 1",
+      },
+      {
+        src: "/payload-view-2.jpg",
+        alt: "TIGERS-X payload view 2",
+      },
+      {
+        src: "/payload-view-3.jpg",
+        alt: "TIGERS-X payload view 3",
+      },
+    ],
   },
 
   timelineContent: {

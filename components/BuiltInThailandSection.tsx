@@ -7,7 +7,7 @@ import { useMissionContent } from "@/components/locale-context";
 
 export default function BuiltInThailandSection() {
   const { builtInThailandContent } = useMissionContent();
-  const { featureImage } = builtInThailandContent;
+  const { featureImage, payloadViews } = builtInThailandContent;
 
   return (
     <section className="relative w-full overflow-hidden border-t border-white/10 py-28 sm:py-36">
@@ -51,6 +51,25 @@ export default function BuiltInThailandSection() {
             />
           </div>
         </div>
+
+        <FadeUp delay={0.2}>
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5 lg:mt-16 lg:gap-6">
+            {payloadViews.map((item) => (
+              <div
+                key={item.src}
+                className="relative aspect-[4/3] w-full overflow-hidden rounded-[12px]"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
