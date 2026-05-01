@@ -55,11 +55,7 @@ export default function StorySection() {
           {storyContent.paragraphs.map((p, i) => (
             <FadeUp key={i} delay={i * 0.05}>
               <p
-                className={`max-w-2xl text-pretty leading-relaxed ${
-                  i === 1
-                    ? "text-2xl font-medium text-white sm:text-3xl"
-                    : "text-lg text-white/80"
-                }`}
+                className={`max-w-2xl text-pretty leading-relaxed`}
               >
                 {p}
               </p>
