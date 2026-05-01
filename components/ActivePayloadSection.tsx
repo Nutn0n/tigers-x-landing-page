@@ -53,11 +53,22 @@ export default function ActivePayloadSection() {
 
           <FadeUp delay={0.1} className="flex min-h-[280px] flex-col justify-center lg:col-span-7">
             <div className="flex w-full items-center justify-center lg:justify-end">
-              <img
-                src="/iss-outline-only.svg"
-                alt="International Space Station outline"
-                className="h-auto w-full max-w-xl object-contain brightness-0 invert opacity-90 lg:max-w-2xl"
-              />
+              <div className="relative w-full max-w-xl lg:max-w-2xl">
+                <img
+                  src="/iss-outline-only.svg"
+                  alt="International Space Station outline"
+                  className="h-auto w-full object-contain brightness-0 invert opacity-90"
+                />
+                <div
+                  className="pointer-events-none absolute left-[47%] top-[65%] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+                  aria-hidden
+                >
+                  <span className="relative inline-flex h-3 w-3">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75" />
+                    <span className="relative inline-flex h-3 w-3 rounded-full bg-orange-500" />
+                  </span>
+                </div>
+              </div>
             </div>
           </FadeUp>
         </div>
