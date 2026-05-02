@@ -33,14 +33,21 @@ export const metadata: Metadata = {
     url: "https://ishalab.space/tigers-x/",
     siteName: "Integration of Space and Human Advancement",
     type: "website",
-    images: [{ url: "og.png", alt: "TIGERS-X" }],
+    images: [
+      {
+        url: "https://ishalab.space/wp-content/uploads/2026/05/og-scaled.png",
+        alt: "TIGERS-X",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "TIGERS-X Scientific Payload Overview",
     description:
       "Thailand Innovative G-force varied Emulsification Research for Space Exploration. Chulabhorn Royal Academy.",
-    images: ["og.png"],
+    images: [
+      "https://ishalab.space/wp-content/uploads/2026/05/og-scaled.png",
+    ],
   },
 };
 
