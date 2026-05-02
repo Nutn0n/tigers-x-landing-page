@@ -190,7 +190,7 @@ const bundleEn = {
     eyebrow: "Chapter 07 / Specification",
     heading: "Compact But Powerful",
     paragraphs: [
-      "In space engineering, constraint is not a limitation. It is the design language. Every gram, watt, and interface must justify itself.",
+      "The design of the experiment cube is compact but powerful. It is designed to be lightweight and small, but powerful enough to perform the experiment. It is designed to be easy to integrate and test, and to be easy to operate in space.",
     ],
     specs: [
       { key: "Dimension", value: "100 × 100 × 200", unit: "mm" },
