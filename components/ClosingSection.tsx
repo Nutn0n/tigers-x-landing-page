@@ -99,8 +99,16 @@ function CtaButton({
       ? "border-[var(--s-border-2)] bg-[var(--s-border-2)] text-white hover:brightness-110"
       : "border-white bg-white text-[var(--s-bg-2)] hover:bg-white/90";
 
+  const isExternal = /^https?:\/\//i.test(href);
+
   return (
-    <Link href={href} className={`${base} ${styles}`}>
+    <Link
+      href={href}
+      className={`${base} ${styles}`}
+      {...(isExternal
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+    >
       <motion.span
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.97 }}

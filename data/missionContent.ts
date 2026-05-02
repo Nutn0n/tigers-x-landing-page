@@ -329,8 +329,12 @@ const bundleEn = {
       "From medical research to the future of experiments beyond Earth.",
     ],
     ctas: [
-      { label: "Follow The Mission", href: "#follow", variant: "primary" as const },
-      { label: "Press & Media Assets", href: "#contact", variant: "ghost" as const },
+      { label: "Mission Blog", href: "#follow", variant: "primary" as const },
+      {
+        label: "Press & Media Assets",
+        href: "https://drive.google.com/drive/folders/1P1LqYT2p-k0V5RLXjVhG89ZrO5Kpwn9p?usp=share_link",
+        variant: "ghost" as const,
+      },
     ],
     footer: {
       projectLabel: "Project",
