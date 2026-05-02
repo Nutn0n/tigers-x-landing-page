@@ -329,7 +329,11 @@ const bundleEn = {
       "From medical research to the future of experiments beyond Earth.",
     ],
     ctas: [
-      { label: "Mission Blog", href: "#follow", variant: "primary" as const },
+      {
+        label: "Mission Blog",
+        href: "https://ishalab.space/news-and-updates/",
+        variant: "primary" as const,
+      },
       {
         label: "Press & Media Assets",
         href: "https://drive.google.com/drive/folders/1P1LqYT2p-k0V5RLXjVhG89ZrO5Kpwn9p?usp=share_link",
