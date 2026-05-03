@@ -58,9 +58,13 @@ export default function MicrogravitySection() {
                 {index === 0 || index === 1 ? (
                   <div className="mb-4 flex h-[80px] w-full items-center justify-start">
                     <img
-                      src={index === 0 ? "/727.svg" : "/iss.svg"}
-                      alt={index === 0 ? "Boeing 727 icon" : "ISS icon"}
-                      className={`h-full w-auto object-contain ${index === 0 ? "-rotate-90" : ""}`}
+                      src={index === 0 ? "/parabolic.png" : "/patch.png"}
+                      alt={
+                        index === 0
+                          ? "Parabolic flight microgravity"
+                          : "TIGERS-X mission patch"
+                      }
+                      className="h-full w-auto object-contain"
                     />
                   </div>
                 ) : null}
