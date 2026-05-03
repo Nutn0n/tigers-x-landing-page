@@ -56,7 +56,7 @@ export default function MicrogravitySection() {
             <FadeUp key={card.title} delay={0.08 * index} className="h-full">
               <article className="flex h-full flex-col rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm sm:p-8">
                 {index === 0 || index === 1 ? (
-                  <div className="mb-4 flex h-[80px] w-full items-center justify-start">
+                  <div className="mb-4 flex h-[200px] w-full items-center justify-start">
                     <img
                       src={index === 0 ? "/parabolic.png" : "/patch.png"}
                       alt={
