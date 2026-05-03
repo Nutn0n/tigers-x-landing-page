@@ -54,7 +54,7 @@ export default function MicrogravitySection() {
         <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
           {microgravityContent.cards.map((card, index) => (
             <FadeUp key={card.title} delay={0.08 * index} className="h-full">
-              <article className="flex h-full flex-col rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm sm:p-8">
+              <article className="flex h-full flex-col rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
                 {index === 0 || index === 1 ? (
                   <div className="mb-4 flex h-[200px] w-full items-center justify-start">
                     <img
@@ -68,10 +68,10 @@ export default function MicrogravitySection() {
                     />
                   </div>
                 ) : null}
-                <p className="display-font text-sm font-bold uppercase tracking-[0.16em] text-white">
+                <p className="display-font text-sm font-bold uppercase tracking-[0.16em] text-black">
                   {card.title}
                 </p>
-                <p className="mt-4 text-pretty text-base leading-relaxed text-white/80 sm:text-lg">
+                <p className="mt-4 text-pretty text-base leading-relaxed text-black/80 sm:text-lg">
                   {card.body}
                 </p>
               </article>
