@@ -663,7 +663,7 @@ const bundleTh: MissionContent = {
       {
         date: "พฤษภาคม 2026",
         title: "เดินทางขึ้นสู่อวกาศ",
-        body: "เพย์โหลดจะปล่อยทยานไปยังสถานีอวกาศนานาชาติด้วยยาน Dragon ในภารกิจ CRS-34 จาก Cape Canaveral Space Force Station สหรัฐอเมริกา",
+        body: "เดินทางไปยังสถานีอวกาศนานาชาติด้วยยาน Dragon ในภารกิจ CRS-34 จาก Cape Canaveral Space Force Station สหรัฐอเมริกา",
         imageSrc: "/public/timeline-06.jpg",
       },
       {
