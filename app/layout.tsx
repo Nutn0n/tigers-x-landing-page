@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Thai, Poppins } from "next/font/google";
+import { Kanit, Poppins } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -10,11 +10,11 @@ const poppins = Poppins({
   display: "swap",
 });
 
-/** Thai UI: Noto Sans Thai from Google Fonts (next/font/google). */
-const notoSansThai = Noto_Sans_Thai({
-  variable: "--font-noto-thai",
+/** Thai UI: Kanit from Google Fonts (next/font/google). */
+const kanit = Kanit({
+  variable: "--font-kanit",
   subsets: ["latin", "thai"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -59,7 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${notoSansThai.variable} antialiased`}
+      className={`${poppins.variable} ${kanit.variable} antialiased`}
     >
       <body className="min-h-screen bg-[var(--s-bg-1)] text-white selection:bg-[var(--s-border-2)]/40 selection:text-white">
         <Providers>{children}</Providers>

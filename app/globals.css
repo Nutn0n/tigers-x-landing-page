@@ -22,19 +22,19 @@ html {
   background-color: var(--s-bg-1);
 }
 
-/* When Thai is active, prefer Noto Sans Thai (Google Font) across UI type + Tailwind theme tokens */
+/* When Thai is active, prefer Kanit (Google Font) across UI type + Tailwind theme tokens */
 html[lang="th"] {
   --font-sans:
-    var(--font-noto-thai),
-    "Noto Sans Thai",
+    var(--font-kanit),
+    "Kanit",
     var(--font-poppins),
     "Poppins",
     "Helvetica Neue",
     Arial,
     sans-serif;
   --font-display:
-    var(--font-noto-thai),
-    "Noto Sans Thai",
+    var(--font-kanit),
+    "Kanit",
     var(--font-poppins),
     "Poppins",
     "Helvetica Neue",
@@ -52,8 +52,8 @@ body {
 
 html[lang="th"] body {
   font-family:
-    var(--font-noto-thai),
-    "Noto Sans Thai",
+    var(--font-kanit),
+    "Kanit",
     var(--font-poppins),
     "Poppins",
     "Helvetica Neue",
@@ -136,8 +136,8 @@ body::-webkit-scrollbar,
   }
   html[lang="th"] .display-font {
     font-family:
-      var(--font-noto-thai),
-      "Noto Sans Thai",
+      var(--font-kanit),
+      "Kanit",
       var(--font-poppins),
       "Poppins",
       "Helvetica Neue",
@@ -149,11 +149,11 @@ body::-webkit-scrollbar,
     letter-spacing: 0.18em;
     text-transform: uppercase;
   }
-  /* Thai copy + uppercase labels: Noto Sans Thai reads better than monospace fallbacks */
+  /* Thai copy + uppercase labels: Kanit reads better than monospace fallbacks */
   html[lang="th"] .mono-label {
     font-family:
-      var(--font-noto-thai),
-      "Noto Sans Thai",
+      var(--font-kanit),
+      "Kanit",
       var(--font-poppins),
       "Helvetica Neue",
       Arial,
