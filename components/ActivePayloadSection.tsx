@@ -51,7 +51,7 @@ export default function ActivePayloadSection() {
                   className="h-auto w-full object-contain"
                 />
                 <div
-                  className="pointer-events-none absolute left-[42%] top-[46%] -translate-x-1/2 -translate-y-1/2"
+                  className="pointer-events-none absolute left-[46%] top-[42%] -translate-x-1/2 -translate-y-1/2"
                   aria-hidden
                 >
                   <span className="relative inline-flex h-3 w-3">
@@ -59,7 +59,7 @@ export default function ActivePayloadSection() {
                     <span className="relative inline-flex h-3 w-3 rounded-full bg-orange-500" />
                   </span>
                 </div>
-                <div className="pointer-events-none absolute left-[42%] top-[calc(46%+0.75rem)] -translate-x-1/2">
+                <div className="pointer-events-none absolute left-[46%] top-[calc(42%+0.75rem)] -translate-x-1/2">
                   <div className="rounded-[8px] bg-white px-2.5 py-1 shadow-sm ring-1 ring-black/5">
                     <p className="mono-label whitespace-nowrap text-[9px] text-[var(--s-bg-2)] sm:text-[10px]">
                       {issColumbusLabel}
