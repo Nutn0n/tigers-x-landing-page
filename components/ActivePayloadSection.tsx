@@ -40,30 +40,18 @@ export default function ActivePayloadSection() {
                 </p>
               </FadeUp>
             ))}
-
-            <FadeUp delay={0.2}>
-              <div className="mt-6 rounded-[12px] bg-white p-4">
-                <div className="mono-label text-[10px] text-[var(--s-border-2)]">
-                  Active Payload
-                </div>
-                <p className="mt-1 text-sm text-[var(--s-bg-2)]/80">
-                  Operated in space, not just sent there. Telemetry and
-                  telecommand link in near real time.
-                </p>
-              </div>
-            </FadeUp>
           </div>
 
           <FadeUp delay={0.1} className="flex min-h-[280px] flex-col justify-center lg:col-span-7">
             <div className="flex w-full items-center justify-center lg:justify-end">
               <div className="relative w-full max-w-xl lg:max-w-2xl">
                 <img
-                  src="/iss-outline-only.svg"
-                  alt="International Space Station outline"
-                  className="h-auto w-full object-contain brightness-0 invert opacity-90"
+                  src="/iss.png"
+                  alt="International Space Station"
+                  className="h-auto w-full object-contain"
                 />
                 <div
-                  className="pointer-events-none absolute left-[47%] top-[65%] -translate-x-1/2 -translate-y-1/2"
+                  className="pointer-events-none absolute left-[42%] top-[46%] -translate-x-1/2 -translate-y-1/2"
                   aria-hidden
                 >
                   <span className="relative inline-flex h-3 w-3">
@@ -71,7 +59,7 @@ export default function ActivePayloadSection() {
                     <span className="relative inline-flex h-3 w-3 rounded-full bg-orange-500" />
                   </span>
                 </div>
-                <div className="pointer-events-none absolute left-[47%] top-[calc(65%+0.75rem)] -translate-x-1/2">
+                <div className="pointer-events-none absolute left-[42%] top-[calc(46%+0.75rem)] -translate-x-1/2">
                   <div className="rounded-[8px] bg-white px-2.5 py-1 shadow-sm ring-1 ring-black/5">
                     <p className="mono-label whitespace-nowrap text-[9px] text-[var(--s-bg-2)] sm:text-[10px]">
                       {issColumbusLabel}
