@@ -193,7 +193,7 @@ const bundleEn = {
       "The design of the experiment cube is compact but powerful. It is designed to be lightweight and small, but powerful enough to perform the experiment. It is designed to be easy to integrate and test, and to be easy to operate in space.",
     ],
     specs: [
-      { key: "Dimension", value: "100 × 100 × 200", unit: "mm" },
+      { key: "Dimension", value: "200 × 200 × 100", unit: "mm" },
       { key: "Material", value: "Aluminum 7075", unit: "" },
       { key: "Launch Mass", value: "2.5", unit: "kg" },
       { key: "Computer", value: "Orange Pi", unit: "" },
