@@ -11,7 +11,7 @@ const bundleEn = {
     { label: "Type", value: "Active Payload with Data Connectivity" },
     { label: "Destination", value: "International Space Station" },
     { label: "Mission", value: "Medical Research for Earth and Space" },
-    { label: "Status", value: "Launching in May 2026" },
+    { label: "Status", value: "Launched on 16th May 2026" },
   ],
 
   heroContent: {
@@ -390,7 +390,7 @@ const bundleTh: MissionContent = {
     { label: "ประเภท", value: "การทดลองอัตโนมัติ พร้อมระบบควบคุมระไกล" },
     { label: "ปลายทาง", value: "สถานีอวกาศนานาชาติ วงโคจรต่ำของโลก" },
     { label: "ภารกิจ", value: "การวิจัยทางการแพทย์บนโลกและอวกาศ" },
-    { label: "สถานะ", value: "ปล่อยยานในเดือนพฤษภาคม 2026" },
+    { label: "สถานะ", value: "ปล่อยขึ้นสู่สถานีอวกาศนานาชาติ 16 พฤษภาคม 2026" },
   ],
 
   heroContent: {
